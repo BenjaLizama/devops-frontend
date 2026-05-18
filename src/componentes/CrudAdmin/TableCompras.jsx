@@ -2,20 +2,23 @@ import { useState, useEffect } from "react";
 import { Modal } from "./Modal";
 import { FormDespacho } from "./FormDespacho";
 import axios from "axios";
+import { BACKEND_IP } from "../../constants/ec2_ip";
 
 export const TableCompras = () => {
   const [ventas, setVentas] = useState([]);
 
   const compras = async () => {
-    await axios.get("http://192.168.30/api/v1/ventas", {
-      headers:{
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-  }
-    }).then((response) => {
-      console.log(response.data);
-      setVentas(response.data);
-    });
+    await axios
+      .get(`http://${BACKEND_IP}/api/v1/ventas`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setVentas(response.data);
+      });
   };
   // Llamada a la función para obtener los datos cuando el componente se monta
   useEffect(() => {
@@ -90,7 +93,7 @@ export const TableCompras = () => {
             venta={ventaSeleccionada}
             onClose={() => {
               //onclose es un prop que pasa funciones al modal con el form abierto, por ende al cerrarse, se ejecutan esas 2 funciones
-              setOpenModal(false), compras();
+              (setOpenModal(false), compras());
             }}
           />
         )}
