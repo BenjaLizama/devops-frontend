@@ -1,20 +1,14 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { Modal } from "./Modal";
 import { FormCierreDespacho } from "./FormCierreDespacho";
-import { API_DESPACHO } from "../../constants/ec2_ip";
+import { despachoApi } from "../../api/client";
 
 export const TableDespachos = () => {
   const [despachos, setDespachos] = useState([]);
 
   const despacho = async () => {
-    await axios
-      .get(`http://${API_DESPACHO}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
+    await despachoApi
+      .get("/api/v1/despachos")
       .then((response) => {
         console.log(response.data);
         setDespachos(response.data);

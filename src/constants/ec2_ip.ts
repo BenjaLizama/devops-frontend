@@ -1,2 +1,2 @@
-export const API_VENTA = "http://52.205.192.213/api/v1/ventas";
-export const API_DESPACHO = "http://52.205.192.213/api/v1/despachos";
+export const API_VENTA_BASE_URL = import.meta.env.VITE_API_VENTA_BASE_URL;
+export const API_DESPACHO_BASE_URL = import.meta.env.VITE_API_DESPACHO_BASE_URL;

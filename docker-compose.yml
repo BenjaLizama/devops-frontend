@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        VITE_API_VENTA_BASE_URL: http://52.205.192.213:8081
+        VITE_API_DESPACHO_BASE_URL: http://52.205.192.213:8080
     container_name: innovatech_frontend
     ports:
       - "80:80"
