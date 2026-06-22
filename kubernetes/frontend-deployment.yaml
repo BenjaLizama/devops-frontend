@@ -32,3 +32,13 @@ spec:
   ports:
     - port: 80
       targetPort: 80
+containers:
+  - name: tienda-frontend
+    image: 364786430131.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:latest
+    ports:
+      - containerPort: 80
+    env:
+      - name: NODE_ENV
+        value: "production"
+      - name: REACT_APP_API_URL # O la variable exacta que use tu código de Front
+        value: "http://<EXTERNAL-IP-DE-MS-VENTA>:8080"
