@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tienda-frontend # <-- Debe coincidir exactamente con el 'kubectl rollout restart'
+  labels:
+    app: tienda-frontend
+spec:
+  replicas: 2 # Alta disponibilidad solicitada en la pauta
+  selector:
+    matchLabels:
+      app: tienda-frontend
+  template:
+    metadata:
+      labels:
+        app: tienda-frontend
+    spec:
+      containers:
+        - name: tienda-frontend
+          # Pon tu ID de cuenta AWS real que salía en tu primera imagen
+          image: 364786430131.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:latest
+          ports:
+            - containerPort: 80 # Puerto donde corre tu servidor web (Nginx / Apache / etc.)
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tienda-frontend-service
+spec:
+  type: LoadBalancer # <-- ¡CLAVE! Esto creará una IP/URL pública en AWS para ver la web desde tu navegador
+  selector:
+    app: tienda-frontend
+  ports:
+    - port: 80
+      targetPort: 80
