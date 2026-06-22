@@ -17,6 +17,7 @@ spec:
       containers:
         - name: tienda-frontend
           image: 364786430131.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
           env:
@@ -24,7 +25,7 @@ spec:
               value: "production"
             - name: REACT_APP_API_URL
               # ⚠️ REEMPLAZA ESTO CON LA URL REAL DE TU SERVICE MS-VENTA SIN LOS CARACTERES "<" Y ">"
-              value: "http://af8c1d136d20941709d1c314a9651941-1214261225.us-east-1.elb.amazonaws.com"
+              value: "http://abd268dec343b45a2b5bd357853d9629-1540589548.us-east-1.elb.amazonaws.com"
 
 ---
 apiVersion: v1
