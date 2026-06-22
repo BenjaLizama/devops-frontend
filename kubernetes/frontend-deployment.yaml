@@ -24,7 +24,7 @@ spec:
               value: "production"
             - name: REACT_APP_API_URL
               # ⚠️ REEMPLAZA ESTO CON LA URL REAL DE TU SERVICE MS-VENTA SIN LOS CARACTERES "<" Y ">"
-              value: "http://a12f825e22c784e17b3a0290f44aa750-513298808.us-east-1.elb.amazonaws.com"
+              value: "http://af8c1d136d20941709d1c314a9651941-1214261225.us-east-1.elb.amazonaws.com"
 
 ---
 apiVersion: v1
