@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tienda-frontend
+  labels:
+    app: tienda-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tienda-frontend
+  template:
+    metadata:
+      labels:
+        app: tienda-frontend
+    spec:
+      containers:
+        - name: tienda-frontend
+          image: 364786430131.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: REACT_APP_API_URL
+              # ⚠️ REEMPLAZA ESTO CON LA URL REAL DE TU SERVICE MS-VENTA SIN LOS CARACTERES "<" Y ">"
+              value: "http://af8c1d136d20941709d1c314a9651941-1214261225.us-east-1.elb.amazonaws.com"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tienda-frontend-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: tienda-frontend
+  ports:
+    - port: 80
+      targetPort: 80

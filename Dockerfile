@@ -13,9 +13,10 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 
 COPY --from=build /app/dist . 
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
 RUN touch /var/run/nginx.pid && \
-    chown -R nginx:nginx /var/run/nginx.pid /var/cache/nginx /var/log/nginx /usr/share/nginx/html
+    chown -R nginx:nginx /var/run/nginx.pid /var/cache/nginx /var/log/nginx /usr/share/nginx/html /etc/nginx/conf.d/default.conf
 
 USER nginx
 
