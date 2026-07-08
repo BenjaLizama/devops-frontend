@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: tienda-frontend
-          image: 615406795391.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:latest
+          image: 615406795391.dkr.ecr.us-east-1.amazonaws.com/tienda-frontend:v1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80
